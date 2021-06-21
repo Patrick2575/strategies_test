@@ -8,6 +8,7 @@ ccxt = "*"
 streamlit = "*"
 pandas = "*"
 plotly = "*"
+ta = "*"
 
 [dev-packages]
 

@@ -2,11 +2,11 @@ from datetime import datetime
 from models import Wallet
 from pandas import DataFrame
 from ohlcv_data import load_binance_data
-from indicators import sma, ema, rma
+from indicators import sma, ema, wma
 
 def run_ma_strategy(df:DataFrame, ma:str = 'sma', span = 7) -> None:
     '''
-    ma can be one of [sma, ema, 'rma]
+    ma can be one of [sma, ema, 'wma]
     '''
     wallet = Wallet(0, 1000) 
 
@@ -14,8 +14,8 @@ def run_ma_strategy(df:DataFrame, ma:str = 'sma', span = 7) -> None:
         sma(df=df, span=span, column_name=ma)
     elif ma == 'ema':
         ema(df=df, span=span, column_name=ma)
-    elif ma == 'rma':
-        rma(df=df, span=span, column_name=ma)
+    elif ma == 'wma':
+        wma(df=df, span=span, column_name=ma)
         
     else:
         print(f"unkown mouving average 'ma = {ma}' ")
@@ -56,6 +56,6 @@ print(f'------------------------------EMA {candel_interval}---------------------
 ma_name = 'ema'
 run_ma_strategy(df, ma = ma_name, span= span)
 
-print(f'------------------------------RMA {candel_interval}------------------------------------------')
-ma_name = 'rma'
+print(f'------------------------------WMA {candel_interval}------------------------------------------')
+ma_name = 'wma'
 run_ma_strategy(df, ma = ma_name, span= span)
