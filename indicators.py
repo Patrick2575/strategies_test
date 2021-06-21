@@ -10,8 +10,8 @@ def sma(df: DataFrame, span:int, column_name = 'sma') -> None:
 def ema(df: DataFrame, span:int, column_name = 'ema') -> None:
     df[column_name] =  EMAIndicator(close=df['close'], window= span).ema_indicator()
 
-def wma(df: DataFrame, span:int, column_name = 'rma') -> None:
-    df[column_name] = df['ta_rma'] =  WMAIndicator(close=df['close'], window= span).wma() 
+def wma(df: DataFrame, span:int, column_name = 'wma') -> None:
+    df[column_name] =  WMAIndicator(close=df['close'], window= span).wma() 
 
 
 # test
