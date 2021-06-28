@@ -24,21 +24,21 @@ def run_ma_strategy(df:DataFrame, ma:str = 'sma', span = 7) -> None:
     for i in range(span +1, df.shape[0]):
         pi = i -1
         if df['close'][i] > df[ma][i] and df['close'][pi] <= df[ma][pi]:
-            wallet.buy(df['close'][i])
+            wallet.buy(df['close'][i], df['time'][i])
 
         if df['close'][i] < df[ma][i] and df['close'][pi] >= df[ma][pi]:
-            wallet.sell(df['close'][i])
+            wallet.sell(df['close'][i], df['time'][i])
 
     last_row = df.shape[0] - 1
-    wallet.sell(df['close'][last_row])
+    wallet.sell(df['close'][last_row], df['time'][last_row])
     print(f'{len(wallet._orders)} order(s) executed')
     print(f'base assets: {wallet._base_assets}')
     print(f'quote assets: {wallet._quote_assets}')
 
     print('--- vs ---')
     wallet = Wallet(0, 1000)
-    wallet.buy(df['close'][0])
-    wallet.sell(df['close'][last_row])
+    wallet.buy(df['close'][0], df['time'][0])
+    wallet.sell(df['close'][last_row], df['time'][last_row])
     print(f'quote assets: {wallet._quote_assets}')
 
 
