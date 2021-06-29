@@ -32,7 +32,7 @@ def run_ma_strategy(df:DataFrame, ma:str = 'sma', span = 7) -> None:
 
     last_row = df.shape[0] - 1
     wallet.sell(df['close'][last_row], df['time'][last_row])
-    save_strategy_data(ma, df, ma, wallet.orders_as_dataframe())
+    save_strategy_data(ma, df, [ma], wallet.orders_as_dataframe())
     print(f'{len(wallet._orders)} order(s) executed')
     print(f'base assets: {wallet._base_assets}')
     print(f'quote assets: {wallet._quote_assets}')
